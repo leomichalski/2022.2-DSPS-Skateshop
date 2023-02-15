@@ -45,24 +45,6 @@ class HomePageView(TemplateView):
         return context
 
 
-class AboutPageView(TemplateView):
-    template_name = 'about.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(AboutPageView, self).get_context_data(**kwargs)
-        context["company"] = Company.objects.all().first()
-        return context
-
-
-class ContactPageView(TemplateView):
-    template_name = 'contact.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(ContactPageView, self).get_context_data(**kwargs)
-        context["company"] = Company.objects.all().first()
-        return context
-
-
 class FaqPageView(TemplateView):
     template_name = 'faq.html'
 

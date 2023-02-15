@@ -21,10 +21,10 @@ class TestHomePageView:
         assert home_response.status_code == 200
 
 
-class TestAboutView:
+class TestFaqView:
     def test_reverse_resolve(self):
-        assert reverse('pages:about') == '/about/'
-        assert resolve('/about/').view_name == 'pages:about'
+        assert reverse('pages:faq') == '/faq/'
+        assert resolve('/faq/').view_name == 'pages:faq'
 
     def test_status_code(self, about_response):
         assert about_response.status_code == 200
