@@ -3,19 +3,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-q=137gn%uu)+zdjc_k(m*6la$@)2plx=@(c-)u)i^0o+7o4s^l'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ["localhost", "192.168.15.16"]
-
-
 # Application
 
 INSTALLED_APPS = [
@@ -26,7 +13,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-    "storages",
     # Local
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
@@ -68,18 +54,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'store.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -113,15 +87,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-STATIC_URL = '/static/'
-STATICFILES_DIR = BASE_DIR / 'static'
-STATIC_ROOT = BASE_DIR / 'static'
-# STATICFILES_STORAGE = 'store.storage.WhiteNoiseStaticFilesStorage'
-# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -130,13 +95,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # User Model
 
 AUTH_USER_MODEL = 'users.User'
-
-
-# Media
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'staticfiles/media'
-
 
 # LOGS
 
@@ -173,10 +131,3 @@ LOGGING = {
     }
 }
 
-DEBUG_PROPAGATE_EXCEPTIONS = True
-
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_ACCESS_KEY_ID = ""
-AWS_SECRET_ACCESS_KEY = ""
-AWS_STORAGE_BUCKET_NAME = "dspskateshop"
-AWS_DEFAULT_ACL = "public-read"

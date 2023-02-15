@@ -1,10 +1,16 @@
+# WARNING: DEVELOPMENT PURPOSES ONLY!
 version: "3.7"
 
 services:
   site:
     build: .
-    container_name: site
+    container_name: dsps-website
     volumes:
       - .:/code
     ports:
-      - 8000:8000
+      - 8800:8800
+    environment:
+      - DJANGO_SETTINGS_MODULE=store.settings.dev
+    command: >
+      /bin/bash -c "python3 manage.py runserver 0.0.0.0:8800"
+    user: "${UID}:${GID}"

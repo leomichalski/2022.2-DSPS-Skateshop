@@ -3,6 +3,10 @@
 ###### Terminal 1
 
 ```
+# especificar usuário
+export UID=$(id -u)
+export GID=$(id -g)
+
 # construir e rodar o docker
 docker-compose up --build
 ```
@@ -11,7 +15,7 @@ docker-compose up --build
 
 ```
 # criar um terminal na imagem docker q está rodando
-docker exec -it site bash
+docker exec -it dsps-website bash
 
 # aplicar migrações no banco de dados
 python manage.py migrate
@@ -19,5 +23,5 @@ python manage.py migrate
 # criar super usuário (é necessário definir um nome de usuario, um email e uma senha nesta etapa)
 python manage.py createsuperuser
 
-# se quiser, pode fechar o terminal 2 e abrir o site em http://localhost:8000/
+# se quiser, pode fechar o terminal 2 e abrir o site em http://localhost:8800/
 ```
