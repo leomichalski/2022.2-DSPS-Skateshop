@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from company.models import Company
 from products.models import Category, Product
 from faq.models import FAQ
-from files.models import FileModel
+from banners.models import Banner
 
 
 MAX_PRODUCTS_PER_CATEGORY = 5
@@ -40,7 +40,8 @@ class HomePageView(TemplateView):
             if product.has_discount:
                 product_with_offer_list.append(product)
         context['product_with_offer_list'] = product_with_offer_list
-        context["files"] = FileModel.active.all()
+        context['banners'] = Banner.objects.filter(is_in_homepage=True).order_by('-homepage_priority')
+        
         return context
 
 

@@ -101,7 +101,10 @@ class Product(TimeStampedModel):
     )
     name = models.CharField(max_length=255)
     slug = AutoSlugField(unique=True, always_update=False, populate_from='name')
-    image = models.CharField(blank=True, max_length=255)
+    image = models.ImageField(
+        upload_to='products', blank=True,
+        help_text='Proporção recomendada: 1:1 (quadrada).'
+    )
     description = models.TextField(blank=True)
     is_available = models.BooleanField(default=True)
     # este eh o preco base do produto, que eh usado para calcular o preco com desconto

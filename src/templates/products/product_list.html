@@ -45,8 +45,8 @@ Produtos
                         </div>
                         {% endif %}
 
-                        {% if product.image %}
-                        <img class="card-img-top" src="{% static '' %}{{product.image}}" alt="">
+                        {% if product.image.url %}
+                        <img class="card-img-top" src="{{product.image.url}}" alt="">
                         {% else %}
                         <img class="card-img-top" src="{% static 'images/no_image.jpg' %}" alt="">
                         {% endif %}
