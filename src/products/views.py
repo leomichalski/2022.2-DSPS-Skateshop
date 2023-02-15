@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
 
 from .models import Category, Product
-
+from company.models import Company
 
 class ProductDetailView(DetailView):
     queryset = Product.available.all()
@@ -24,6 +24,7 @@ class ProductListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["company"] = Company.objects.all().first()
         context['category'] = self.category
         context['categories'] = Category.objects.all()
         return context

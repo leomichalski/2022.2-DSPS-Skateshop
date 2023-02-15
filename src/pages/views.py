@@ -68,5 +68,6 @@ class FaqPageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(FaqPageView, self).get_context_data(**kwargs)
+        context["company"] = Company.objects.all().first()
         context["faqs"] = FAQ.objects.all()
         return context
