@@ -7,6 +7,11 @@ from company.models import Company
 class ProductDetailView(DetailView):
     queryset = Product.available.all()
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["company"] = Company.objects.all().first()
+        return context
+
 
 class ProductListView(ListView):
     category = None
