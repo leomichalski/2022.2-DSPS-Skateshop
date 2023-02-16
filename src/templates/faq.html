@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div class="container my-3">
+<div class="container my-3" style="min-height: 70vh;">
     {% for fac in faqs %}
         <h5 >{{fac.id}}. {{ fac.question }}</h5>
         <h6 style="white-space:pre-wrap; word-break:break-word;">{{ fac.answer }}</h6>

@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 
 
 class Banner(models.Model):
-    photo = models.ImageField(upload_to='banners/', help_text='Resolução recomendada: 1920x550.')
+    photo = models.ImageField(upload_to='banners/', help_text='Resolução recomendada: 1920x600.')
     photo_alt = models.CharField(max_length=300, blank=True, null=True)
     link = models.URLField(blank=True, null=True)
     # TODO: change title max length

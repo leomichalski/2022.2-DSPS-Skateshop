@@ -102,7 +102,8 @@ class Product(TimeStampedModel):
     name = models.CharField(max_length=255)
     slug = AutoSlugField(unique=True, always_update=False, populate_from='name')
     image = models.ImageField(
-        upload_to='products', blank=True,
+        upload_to='products',
+        default='no_image.jpg',
         help_text='Proporção recomendada: 1:1 (quadrada).'
     )
     description = models.TextField(blank=True)

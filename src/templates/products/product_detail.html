@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<div class="container my-3">
+<div class="container my-3" style="min-height: 70vh;">
     <div class="row">
         <div class="col-lg-3 mb-3 mb-lg-0">
             {% if product.has_discount == True %}
@@ -20,7 +20,7 @@
             {% endif %}
 
             {% if product.image.url %}
-            <img class="container-fluid" src="{{ product.image.url }}" alt="">
+            <img class="img-fluid" style="width: 100%;" src="{{ product.image.url }}" alt="">
             {% else %}
             <img class="card-img-top" src="{% static 'images/no_image.jpg' %}" alt="">
             {% endif %}
@@ -34,17 +34,14 @@
             <h2>R$ {{ product.price }}</h2>
             {% endif %}
             <p>{{ product.description }}</p>
-            <p>
-                Voltar para o catálogo de
-                <a class="text-decoration-none" href="{{ product.category.get_absolute_url }}">
+            <p >
+                Ir para o catálogo de
+                <a class="text-decoration-none" style="text-transform: lowercase;" href="{{ product.category.get_absolute_url }}">
                     {{ product.category.name }}
                 </a>
             </p>
         </div>
-        <div class="col-lg-3 mb-3 mb-lg-0">
-            <button type="submit" class="btn btn-primary">Comprar</button>
-        </div>
-        
+
     </div>
 </div>
 
