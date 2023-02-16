@@ -33,7 +33,7 @@
             {% else %}
             <h2>R$ {{ product.price }}</h2>
             {% endif %}
-            <p>{{ product.description }}</p>
+            <p>{{ product.description|linebreaks }}</p>
             <p >
                 Ir para o catálogo de
                 <a class="text-decoration-none" style="text-transform: lowercase;" href="{{ product.category.get_absolute_url }}">
