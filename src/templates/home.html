@@ -67,7 +67,6 @@
 
 <div class="container my-3">
     {% if product_with_offer_list.0.is_available is not None %}  
-
     <div>
         <h5 class="card-title">
             <a class="text-decoration-none text-dark">Promoções</a>
@@ -75,8 +74,8 @@
     
         <div class="d-flex flex-nowrap" style="overflow-x: scroll;">
             {% for product in product_with_offer_list %}
-                <div class="card" display="inline-block"
-                     style="min-width: 150px; max-width: 210px; margin-right: 16px; margin-bottom: 16px;">
+                <div class="card col-9 col-sm-6 col-md-3" display="inline-block"
+                     style="margin-right: 30px; margin-bottom: 16px; padding-left: 0px; padding-right: 0px;">
                     <a href="{{ product.get_absolute_url }}">
                         <div style="width: 100%; padding-top: 10px; background-color: rgba(0,0,0,0.9); position: absolute; top: 0%; left: 0%; transform: translate(-0%, -0%);">
                             {% if product.is_discount_absolute %}
@@ -87,9 +86,9 @@
                         </div>
 
                         {% if product.image.url %}
-                            <img class="card-img-top" src="{{product.image.url}}" alt="">
+                            <img class="card-img-top"  src="{{product.image.url}}" alt="">
                         {% else %}
-                            <img class="card-img-top" src="{% static 'images/no_image.jpg' %}" alt="">
+                            <img class="card-img-top"  src="{% static 'images/no_image.jpg' %}" alt="">
                         {% endif %}
                     </a>
         
@@ -117,14 +116,14 @@
         </h5>
 
         <div class="d-flex flex-nowrap" style="overflow-x: scroll;">
-        {% for product in product_list  %}
+            {% for product in product_list  %}
             {% if product.category == cat %}
-                <div class="card" style="min-width: 150px; max-width: 210px; margin-right: 16px; margin-bottom: 16px;" display="inline-block">
+                <div class="card col-9 col-sm-6 col-md-3" style="margin-right: 30px; margin-bottom: 16px; padding-left: 0px; padding-right: 0px;" display="inline-block">
                     <a href="{{ product.get_absolute_url }}">
                         {% if product.image.url %}
-                            <img class="card-img-top" src="{{product.image.url}}" alt="">
+                            <img class="card-img-top"  src="{{product.image.url}}" alt="">
                         {% else %}
-                            <img class="card-img-top" src="{% static 'images/no_image.jpg' %}" alt="">
+                            <img class="card-img-top"  src="{% static 'images/no_image.jpg' %}" alt="">
                         {% endif %}
                     </a>
 
@@ -138,16 +137,15 @@
             {% endif %}
         {% endfor %}
 
-        <div class="card" style="min-width: 150px; max-width: 210px; margin-right: 16px; margin-bottom: 16px;" display="inline-block">
+        <div class="card col-9 col-sm-6 col-md-3 align-items-center justify-content-center border-0" style="margin-right: 30px; margin-bottom: 16px; padding-left: 0px; padding-right: 0px;" display="inline-block">
             <a href="{% url 'products:list_by_category' slug=cat.slug %}">
-                <img class="card-img-top" src="{% static 'images/no_image.jpg' %}" alt="">
+                {% comment %} <i class="fa fa-sharp fa-plus text-dark" style="font-size: 10em;"></i> {% endcomment %}
+                {% comment %} <i class="fa fa-plus text-dark " style="font-size: 7em;"></i> {% endcomment %}
+                <img src="{% static 'icons/plus.png' %}" alt="">
             </a>
         
             <a class="text-decoration-none text-dark" href="{% url 'products:list_by_category' slug=cat.slug %}">
                 <h6 class="card-title" style="white-space:pre-wrap; word-break:break-word; margin: 8px;">Mais {{ cat.name|lower }}</h6>
-            </a>
-            <a class="text-decoration-none text-dark" href="{% url 'products:list_by_category' slug=cat.slug %}">
-                <p class="card-text font-weight-bold"></p>
             </a>
         </div>
 
