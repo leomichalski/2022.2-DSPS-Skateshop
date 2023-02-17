@@ -1,9 +1,33 @@
-<div>
+<div class="paginator">
+  <ul class="pagination">
     {% if page.has_previous %}
-    <a href="?page={{ page.previous_page_number }}">Anterior</a>
+    <li class="page-item page-prev">
+      <a class="page-link"
+         href="?page={{ page.previous_page_number }}"
+         tabindex="-1"
+         aria-disabled="true"><i class="fa-solid fa-chevron-left"></i> PÁGINA ANTERIOR</a>
+    </li>
     {% endif %}
-    Página {{ page.number }} de {{ page.paginator.num_pages }}.
+
+    {% comment %} the next command generates a string of length page.paginator.num_pages {% endcomment %}
+    {% comment %} then iterates over each character {% endcomment %}
+    {% for _ in ""|rjust:page.paginator.num_pages %}
+    {% if forloop.counter == page.number%}
+    <li class="page-item active" aria-current="page">
+    {% else %}
+    <li class="page-item" aria-current="page">
+    {% endif %}
+      <a class="page-link" href="?page={{ forloop.counter }}">{{forloop.counter}}</a>
+    </li>
+    {% endfor %}
+
     {% if page.has_next %}
-    <a href="?page={{ page.next_page_number }}">Próxima</a>
+    <li class="page-item page-next">
+      <a class="page-link"
+         href="?page={{ page.next_page_number }}"
+         tabindex="-1"
+         aria-disabled="true">PRÓXIMA PÁGINA <i class="fa-solid fa-chevron-right"></i></a>
+    </li>
     {% endif %}
+  </ul>
 </div>
