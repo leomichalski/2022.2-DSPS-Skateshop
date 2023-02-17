@@ -54,19 +54,17 @@
     {% endblock content %} 
 </body>
 
-<footer class="d-flex flex-column bg-light">
+<footer class="d-flex flex-column" style="background-color: #000000;">
     <br>
     <div class="container">
         <div class="row">
             <div class="col-md-5" style="display: flex; justify-content: space-around; flex-direction: column;">
-                <p><i style="margin-left: 2.5px; margin-right: 7px;" class="fa-lg fa-brands fa-whatsapp icon-whatsapp" title="WhatsApp"></i>{{company.phone}} (WhatsApp)</p>
-                <p style="white-space: nowrap;"><i style="margin-left: 1.5px; margin-right: 6px;" class="fa-lg fa-regular fa-envelope icon-gmail" title="Gmail"></i>{{company.email}}</p>
-                <p><i style="margin-left: 2.0px; margin-right: 6.5px;" class="fa-lg fa-brands fa-instagram icon-instagram" title="Instagram"></i><a href="https://www.instagram.com/{{company.insta}}" target="_blank" rel="noopener noreferrer">@{{ company.insta }}</a></p>
-                <p><i style="margin-left: 0.0px; margin-right: 4.5px;" class="fa-lg fa-brands fa-youtube icon-youtube" title="YouTube"></i><a href="https://www.youtube.com/@{{ company.youtube }}" target="_blank" rel="noopener noreferrer">Canal do YouTube</a></p>
-                <p><i style="margin-left: 1.0px; margin-right: 5.5px;" class="fa-lg fa-regular fa-clock icon-business-hours" title="Horário de funcionamento"></i>{{ company.business_hours }}</p>
-                <p><i style="margin-left: 3.5px; margin-right: 8px;" class="fa-lg fa fa-location-dot icon-location" title="Localização"></i>{{ company.address }}</p>
-                {% comment %} Segunda a Sexta: 10h a 20h. Sábado: 9h30 a 16h. {% endcomment %}
-                {% comment %} Loja 47, Bahamas Center. Águas Claras - Distrito Federal. {% endcomment %}
+                <p class="text-white"><i style="margin-left: 2.5px; margin-right: 7px;" class="fa-lg fa-brands fa-whatsapp icon-whatsapp" title="WhatsApp"></i>{{company.phone}} (WhatsApp)</p>
+                <p class="text-white" style="white-space: nowrap;"><i style="margin-left: 1.5px; margin-right: 6px;" class="fa-lg fa-regular fa-envelope icon-gmail" title="Gmail"></i>{{company.email}}</p>
+                <p class="text-white"><i style="margin-left: 2.0px; margin-right: 6.5px;" class="fa-lg fa-brands fa-instagram icon-instagram" title="Instagram"></i><a style="color:#ffffff;" href="https://www.instagram.com/{{company.insta}}" target="_blank" rel="noopener noreferrer">@{{ company.insta }}</a></p>
+                <p class="text-white"><i style="margin-left: 0.0px; margin-right: 4.5px;" class="fa-lg fa-brands fa-youtube icon-youtube" title="YouTube"></i><a style="color:#ffffff;" href="https://www.youtube.com/@{{ company.youtube }}" target="_blank" rel="noopener noreferrer">Canal do YouTube</a></p>
+                <p class="text-white"><i style="margin-left: 1.0px; margin-right: 5.5px;" class="fa-lg fa-regular fa-clock icon-business-hours" title="Horário de funcionamento"></i>{{ company.business_hours }}</p>
+                <p class="text-white"><i style="margin-left: 3.5px; margin-right: 8px;" class="fa-lg fa fa-location-dot icon-location" title="Localização"></i>{{ company.address }}</p>
             </div>
             <div class="col-md-7">
                 <iframe
