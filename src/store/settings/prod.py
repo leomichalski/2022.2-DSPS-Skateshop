@@ -30,10 +30,7 @@ DATABASES = {
 }
 
 # aws s3 settings
-AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')  # not a secret
-AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')  # not a secret
-AWS_DEFAULT_ACL = 'public-read'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=172800'}
 
