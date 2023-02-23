@@ -8,7 +8,7 @@
 
 <div >
     {% comment %} <br> {% endcomment %}
-    {% if banners.0.photo is not None %}  
+    {% if banners %}  
         <div id="carouselBanners" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             {% for banner in banners %}
@@ -51,7 +51,7 @@
                     </div>
             {% endfor %}
         </div>
-        {% if banners.1.photo is not None %}  
+        {% if banners|length >= 2 %}
             <a class="carousel-control-prev" href="#carouselBanners" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
@@ -66,7 +66,7 @@
 </div>
 
 <div class="container my-3">
-    {% if product_with_offer_list.0.is_available is not None %}  
+    {% if product_with_offer_list %}  
     <div>
         <h5 class="card-title">
             <a class="text-decoration-none text-dark">Promoções</a>
@@ -86,9 +86,9 @@
                         </div>
 
                         {% if product.image.url %}
-                            <img class="card-img-top"  src="{{product.image.url}}" alt="">
+                            <img class="card-img-top"  src="{{product.image.url}}" alt="{{ product.image_alt|default_if_none:"" }}">
                         {% else %}
-                            <img class="card-img-top"  src="{% static 'images/no_image.jpg' %}" alt="">
+                            <img class="card-img-top"  src="{% static 'images/no_image.jpg' %}" alt="sem imagem">
                         {% endif %}
                     </a>
         
@@ -121,9 +121,9 @@
                 <div class="card col-9 col-sm-6 col-md-3" style="margin-right: 30px; margin-bottom: 16px; padding-left: 0px; padding-right: 0px;" display="inline-block">
                     <a href="{{ product.get_absolute_url }}">
                         {% if product.image.url %}
-                            <img class="card-img-top"  src="{{product.image.url}}" alt="">
+                            <img class="card-img-top"  src="{{product.image.url}}" alt="{{ product.image_alt|default_if_none:"" }}">
                         {% else %}
-                            <img class="card-img-top"  src="{% static 'images/no_image.jpg' %}" alt="">
+                            <img class="card-img-top"  src="{% static 'images/no_image.jpg' %}" alt="sem imagem">
                         {% endif %}
                     </a>
 

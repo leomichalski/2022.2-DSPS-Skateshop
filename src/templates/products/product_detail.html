@@ -20,9 +20,9 @@
             {% endif %}
 
             {% if product.image.url %}
-            <img class="img-fluid" style="width: 100%;" src="{{ product.image.url }}" alt="">
+            <img class="img-fluid" style="width: 100%;" src="{{ product.image.url }}" alt="{{ product.image_alt|default_if_none:"" }}">
             {% else %}
-            <img class="card-img-top" src="{% static 'images/no_image.jpg' %}" alt="">
+            <img class="card-img-top" src="{% static 'images/no_image.jpg' %}" alt="sem imagem">
             {% endif %}
         </div>
         <div class="col-lg-9">

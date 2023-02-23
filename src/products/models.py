@@ -15,17 +15,26 @@ class AvailableManager(models.Manager):
 
 
 class Category(TimeStampedModel):
-    name = models.CharField(max_length=255, unique=True)
-    slug = AutoSlugField(unique=True, always_update=False, populate_from='name')
-    is_in_homepage = models.BooleanField(default=False)
+    name = models.CharField(
+        max_length=255, unique=True,
+        verbose_name='Nome'
+    )
+    slug = AutoSlugField(
+        unique=True, always_update=False, populate_from='name',
+    )
+    is_in_homepage = models.BooleanField(
+        default=False,
+        verbose_name='está na home?'
+    )
     homepage_priority = models.PositiveSmallIntegerField(
-        default=1, validators=[MinValueValidator(1), MaxValueValidator(10)]
+        default=1, validators=[MinValueValidator(1), MaxValueValidator(10)],
+        verbose_name='prioridade na home (quanto maior, mais em cima)'
     )
 
     class Meta:
         ordering = ('name',)
-        verbose_name = 'category'
-        verbose_name_plural = 'categories'
+        verbose_name = 'categoria'
+        verbose_name_plural = 'categorias'
 
     def __str__(self):
         return self.name
@@ -35,22 +44,28 @@ class Category(TimeStampedModel):
 
 
 class LimitedTimeOffer(TimeStampedModel):
-    start_datetime = models.DateTimeField()
-    end_datetime = models.DateTimeField()
+    start_datetime = models.DateTimeField(
+        verbose_name='início da promoção'
+    )
+    end_datetime = models.DateTimeField(
+        verbose_name='término da promoção'
+    )
 
     # somente pode ser usado um dos seguintes dois campos por vez
     relative_discount = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(95)],
         blank=True, null=True,
+        verbose_name='desconto relativo (%)'
     )
     absolute_discount = models.DecimalField(
         max_digits=10, decimal_places=2,
         blank=True, null=True,
+        verbose_name='desconto absoluto (R$)'
     )
 
     class Meta:
-        verbose_name = 'limited_time_offer'
-        verbose_name_plural = 'limited_time_offers'
+        verbose_name = 'promoção'
+        verbose_name_plural = 'promoções'
 
     def __str__(self):
         s = "{:03d}".format(self.id)
@@ -97,24 +112,48 @@ class LimitedTimeOffer(TimeStampedModel):
 class Product(TimeStampedModel):
     category = models.ForeignKey(
         Category, related_name='products',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        verbose_name="categoria"
     )
-    name = models.CharField(max_length=255)
-    slug = AutoSlugField(unique=True, always_update=False, populate_from='name')
+    name = models.CharField(
+        max_length=255,
+        verbose_name='nome'
+    )
+    slug = AutoSlugField(
+        unique=True, always_update=False, populate_from='name',
+    )
     image = models.ImageField(
         upload_to='products',
         default='no_image.jpg',
-        help_text='Proporção recomendada: 1:1 (quadrada).'
+        help_text='Proporção recomendada: 1:1 (quadrada).',
+        verbose_name='imagem'
     )
-    description = models.TextField(blank=True)
-    is_available = models.BooleanField(default=True)
+    image_alt = models.CharField(
+        max_length=300, blank=True, null=True,
+        verbose_name='texto alternativo da imagem'
+    )
+    description = models.TextField(
+        blank=True,
+        verbose_name='descrição'
+    )
+    is_available = models.BooleanField(
+        default=True,
+        verbose_name='está disponível'
+    )
     # este eh o preco base do produto, que eh usado para calcular o preco com desconto
-    base_price = models.DecimalField(max_digits=10, decimal_places=2)
+    base_price = models.DecimalField(
+        max_digits=10, decimal_places=2,
+        verbose_name='preço base (ou seja, sem promoção)'
+    )
     limited_time_offer = models.ForeignKey(
         LimitedTimeOffer, related_name='products',
-        on_delete=models.SET_NULL, null=True, blank=True
+        on_delete=models.SET_NULL, null=True, blank=True,
+        verbose_name='promoção'
     )
-    may_be_in_homepage = models.BooleanField(default=True)
+    is_in_homepage = models.BooleanField(
+        default=True,
+        verbose_name='está na home'
+    )
 
 
     objects = models.Manager()
@@ -122,6 +161,8 @@ class Product(TimeStampedModel):
 
     class Meta:
         ordering = ('name',)
+        verbose_name = 'produto'
+        verbose_name_plural = 'produtos'
 
     def __str__(self):
         return self.name

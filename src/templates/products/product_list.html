@@ -46,9 +46,9 @@ Produtos
                         {% endif %}
 
                         {% if product.image.url %}
-                        <img class="card-img-top" src="{{product.image.url}}" alt="">
+                        <img class="card-img-top" src="{{product.image.url}}" alt="{{ product.image_alt|default_if_none:"" }}">
                         {% else %}
-                        <img class="card-img-top" src="{% static 'images/no_image.jpg' %}" alt="">
+                        <img class="card-img-top" src="{% static 'images/no_image.jpg' %}" alt="sem imagem">
                         {% endif %}
                     </a>
 

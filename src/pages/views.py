@@ -21,11 +21,11 @@ class HomePageView(TemplateView):
         categories = Category.objects.filter(is_in_homepage=True).order_by('-homepage_priority')
         # TODO: do the following queries with SQL instead of the Django imcomplete ORM. F
         # 5 products of each category
-        product_list = Product.objects.all()
+        product_list = Product.available.all()
         product_list_per_category = []
         for category in categories:
             tmp_list = product_list.filter(
-                may_be_in_homepage=True, category=category
+                is_in_homepage=True, category=category
             )
             product_without_discount = [p for p in tmp_list if not p.has_discount]
             product_list_per_category.extend(
