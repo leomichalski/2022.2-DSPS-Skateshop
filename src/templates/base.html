@@ -17,9 +17,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" 
         crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" type='text/css' href="{% static 'paginator/paginator.css' %}"/>
+    <script>
+        if (localStorage.getItem('IsCookieConsentModalShown') == null) {
+            $(document).ready(function(){
+                $("#cookieConsentModal").modal('show');
+            });
+        }
 
+        function saveCookieConsent() {
+            if (localStorage.getItem('IsCookieConsentModalShown') == null) {
+                localStorage.setItem('IsCookieConsentModalShown', true);
+            }
+        }
+    </script>
     <title>{% block title %}{{ company.name }}{% endblock title %}</title>
 </head>
+
+<div class="modal fade" id="cookieConsentModal" tabindex="-1" role="dialog" aria-labelledby="cookieConsentModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cookieConsentModalLabel">Cookies de segurança</h5>
+      </div>
+      <div class="modal-body">
+        Este site utiliza cookies necessários para a segurança do site, que estão ativados por padrão e não podem ser desativados.
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary" href="{% url 'pages:faq' %}" onclick="saveCookieConsent()">Estou ciente, ler mais</a>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="saveCookieConsent()">Estou ciente, continuar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <body class="min-vh-100">
     {% comment %} <body class="d-flex flex-column min-vh-100"> {% endcomment %}
